@@ -1,0 +1,35 @@
+clc; clear; close all;
+
+% Basic parameters
+Beta = 100; Rc = 4.7e3; Re = 1e3; Rl = 10e3;
+Cin = 10e-6; Cout = 10e-6; Ce = 100e-6;
+Ic = 1e-3; gm = Ic/0.025; rpi = Beta/gm;
+
+% Frequency range (10 Hz to 10 MHz)
+f = logspace(1,7,1000);
+s = 1j*2*pi*f;
+
+% Impedances
+Zcin = 1./(s*Cin);
+Zcout = 1./(s*Cout);
+Ze = 1./(s*Ce);
+Re_eff = (Re.*Ze)./(Re+Ze);
+
+% Voltage gain with feedback
+Av = -gm*(Rc*Rl)./(Rc+Rl)./(1+gm*Re_eff);
+Avf = Av.*(rpi./(rpi+Zcin)).*(Rl./(Rl+Zcout));
+
+% Bandwidth
+Av_mid = abs(Avf(round(end/2)));
+Av3dB = Av_mid/sqrt(2);
+idx = find(abs(Avf) >= Av3dB);
+BW = [f(idx(1)) f(idx(end))];
+
+% Show results
+fprintf('Gain = %.2f\n', Av_mid);
+fprintf('Bandwidth = %.1f Hz – %.1f Hz\n', BW(1), BW(2));
+
+% Plot
+semilogx(f, 20*log10(abs(Avf)), 'LineWidth', 2);
+grid on; xlabel('Frequency (Hz)'); ylabel('Gain (dB)');
+title('Feedback Amplifier Response');
