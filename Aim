@@ -1,0 +1,41 @@
+Aim: To simulate a voltage-series (series-shunt) feedback amplifier using MATLAB, measure
+
+Input resistance with feedback (Rif)
+
+Output resistance with feedback (Rof)
+
+Voltage gain with feedback (Avf)
+
+Bandwidth of the amplifier
+
+and comment on the results.
+
+Theory: Feedback amplifiers are widely used in electronic circuits to improve performance. In a voltage-series feedback configuration (also called series shunt feedbacky
+
+The output voltage is sampled and fed back in series with the input.
+
+The feedback increases the input resistance (Rif) and decreases the output resistance (Rof).
+
+The overall gain with feedback (Avf) is reduced compared to the open-loop gain but becomes more stable.
+
+The bandwidth of the amplifier increases due to negative feedback.
+
+Key equations:
+
+where:
+
+1. Gain with feedback
+
+2. Input resistance with feedback
+
+3. Output resistance with feedback
+
+A Acf1+ A3
+
+RR(1+48)
+
+Rof R 1+ AB
+
+⚫ (A)= open loop gain
+
+(B)feedback factor
